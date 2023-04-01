@@ -29,7 +29,7 @@ public class DecrementingCarousel {
             return null;
         }
         this.isRunning = true;
-        return new CarouselRun(this.elements.iterator());
+        return new CarouselRun(this.elements);
     }
 
     public static void main(String[] args) {
