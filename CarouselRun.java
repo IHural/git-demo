@@ -1,31 +1,40 @@
-package com.epam.rd.autotasks;
-
-import java.util.Iterator;
+import java.util.List;
 
 
 public class CarouselRun {
-    private final Iterator<Integer> iterator;
+    private final List<Integer> list;
     private int current;
 
-    public CarouselRun(Iterator<Integer> iterator) {
-        this.iterator = iterator;
-        this.current = -1;
+    public CarouselRun(List<Integer> list) {
+        this.list = list;
+        this.current = 0;
     }
 
     public int next() {
-        while (this.iterator.hasNext()) {
-            int next = this.iterator.next();
+        while (this.current < this.list.size()) {
+
+            int next = this.list.get(this.current);
             if (next > 0) {
-                this.current = next;
-                this.current--;
-                return this.current;
-            }
+                current = next;
+                current--;
+            this.list.set(this.current, current);
+            this.current++;
+            return current;
         }
-        return (this.current = -1);
+            this.current++;
+
+        }
+        return -1;
     }
 
+
     public boolean isFinished() {
-        return !this.iterator.hasNext();
+        for (int i : this.list) {
+            if (i > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
